@@ -27,7 +27,7 @@ app.post('/shortUrls', async (req, res) => {
 app.get('/:shortUrl', async (req, res) => {
     const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
     if (shortUrl == null) { res.send('Short URL not found') }
-    shortUrl.clicks++
+    shortUrl.clicks = shortUrl.clicks + 1
     shortUrl.save()
 
     res.redirect(shortUrl.full)

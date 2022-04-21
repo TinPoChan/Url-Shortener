@@ -30,11 +30,9 @@ app.get('/:shortUrl', async (req, res) => {
         res.send('Short URL not found')
     } else {
         shortUrl.clicks++
-        shortUrl.save()
+        await shortUrl.save()
+        res.redirect(shortUrl.full)
     }
-
-
-    res.redirect(shortUrl.full)
 })
 
 
